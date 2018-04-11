@@ -4,6 +4,7 @@
 
 RF24 transmit (9,10);                    //create RF24 object called transmit
 
+int xAxis,yAxis;
 byte address [5] = "00001";             //set address to 00001
 
 void setup() {
@@ -17,7 +18,10 @@ void setup() {
 
 void loop() {
 
-  char data[32] = "It Works !";         //send character string upto 32 bytes long
+xAxis = analogRead(A0);
+yAxis = analogRead(A1);
+
+  char data[32] = "X= ", xAxis, ",Y= ", yAxis;         //send character string upto 32 bytes long
   transmit.write(&data,sizeof(data));   //transmit the data
-  delay(1000);      
+  delay(100);      
 }
